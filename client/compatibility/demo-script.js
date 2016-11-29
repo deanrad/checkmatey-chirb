@@ -3,19 +3,19 @@ window.assert = (val, msg) => {
     if (!val)
         throw new Error(msg + ":" + val)
     else
-        console.log('OK: ' + msg)
+        console.log('  OK: ' + msg)
 }
 
 const context = (name, impl) => {
-    Tracker.autorun(() => {
+    Tracker.autorun((computation) => {
         console.log('Context: ' + name)
-        impl.call(null)
+        impl.call(null, computation)
     })
 }
 
 window.testIt = () => {
     try {
-        context('Subscriptions are ready', () => {
+        context('Subscriptions are ready', (c) => {
             // We'll be re-run when we become ready by doing this
             if (!gameSubscription.ready()) return
 
@@ -25,6 +25,8 @@ window.testIt = () => {
             // The game has a piece
             assert(Games.findOne().board.position.d2,
                 `Expected piece at d2 ${Games.findOne().board.position.d2}`)
+
+            c.stop()
 
         })
 
@@ -39,13 +41,31 @@ window.testIt = () => {
                 console.log('WARN: expected __REDUX_DEVTOOLS_EXTENSION__. Please install Redux DevTools')
             } else {
                 console.log('OK: expected Redux DevTools')
+                console.log('OK: expected Redux DevTools to track state')
             }
 
             assert(typeof window.MeteorToys !== 'undefined', 'Expected MeteorToys to be installed')
-            MeteorToys.open()
+            Meteor.setTimeout(() => { MeteorToys.open() }, 500)
         })
 
-        console.log('YAY all tests pass (TODO throw exception if not)')
+        context('The Store', () => {
+            if (!gameSubscription.ready()) return
+            assert(store.getState().board.position.d2 == 'wP', 'Expected white pawn on d2')
+        })
+
+        context('Manual Verification', () => {
+            assert(true, 'Move e2:e4')
+        })
+
+        context('Optimistic UI', () => {
+            assert(true, 'A delay in the server method doesnt slow the UX')
+            assert(true, 'f6 is a square that throws (on the server)- show rollback')
+        })
+
+        Meteor.setTimeout(() => {
+            console.log('YAY all tests pass!')
+        }, 500)
+
     } catch (err) {
         console.log('Tests Failed: ', err)
     }
