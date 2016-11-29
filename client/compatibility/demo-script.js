@@ -34,6 +34,17 @@ window.testIt = () => {
             // assert(Games.find().count() === 0, 'Expected to find no games after stopping')
         })
 
+        context('Debug Tooling', () => {
+            if (typeof window.__REDUX_DEVTOOLS_EXTENSION__ !== 'function') {
+                console.log('WARN: expected __REDUX_DEVTOOLS_EXTENSION__. Please install Redux DevTools')
+            } else {
+                console.log('OK: expected Redux DevTools')
+            }
+
+            assert(typeof window.MeteorToys !== 'undefined', 'Expected MeteorToys to be installed')
+            MeteorToys.open()
+        })
+
         console.log('YAY all tests pass (TODO throw exception if not)')
     } catch (err) {
         console.log('Tests Failed: ', err)
