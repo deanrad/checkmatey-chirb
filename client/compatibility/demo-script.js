@@ -62,6 +62,10 @@ window.testIt = () => {
             assert(true, 'f6 is a square that throws (on the server)- show rollback')
         })
 
+        context('Dependency graphs', () => {
+            assert(true, 'Can do npm run doc:all to see the dep graph ')
+        })
+
         Meteor.setTimeout(() => {
             console.log('YAY all tests pass!')
         }, 500)
