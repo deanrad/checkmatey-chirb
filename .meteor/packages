@@ -16,6 +16,7 @@ standard-minifier-css
 es5-shim
 shell-server
 ecmascript
+session
 
 meteortoys:allthings
 froatsnook:sleep
