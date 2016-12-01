@@ -23,8 +23,8 @@ window.testIt = () => {
             assert(Games.find().count() > 0, 'Expected to find a game')
 
             // The game has a piece
-            assert(Games.findOne().board.position.d2,
-                `Expected piece at d2 ${Games.findOne().board.position.d2}`)
+            assert(Games.findOne().board.position.a1,
+                `Expected piece at a1 ${Games.findOne().board.position.a1}`)
 
             c.stop()
 
@@ -50,7 +50,7 @@ window.testIt = () => {
 
         context('The Store', () => {
             if (!gameSubscription.ready()) return
-            assert(store.getState().board.position.d2 == 'wP', 'Expected white pawn on d2')
+            assert(store.getState().board.position.a1 == 'wR', 'Expected white rook on a1')
         })
 
         context('Manual Verification', () => {
