@@ -45,7 +45,7 @@ window.testIt = () => {
             }
 
             assert(typeof window.MeteorToys !== 'undefined', 'Expected MeteorToys to be installed')
-            Meteor.setTimeout(() => { MeteorToys.open() }, 500)
+            // Meteor.setTimeout(() => { MeteorToys.open() }, 500)
         })
 
         context('The Store', () => {
