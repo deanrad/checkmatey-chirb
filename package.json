@@ -1,7 +1,7 @@
 {
   "name": "checkmatey-chirb.meteorapp.com",
   "scripts": {
-    "start": "meteor run --port 3120",
+    "start": "meteor run --port 7730",
     "doc:all": "npm run doc:gen && npm run doc:view",
     "doc:gen": "madge -f es6 -i deps.svg lib/ ",
     "doc:view": "open deps.svg",
