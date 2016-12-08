@@ -5,7 +5,8 @@
     "doc:all": "npm run doc:gen && npm run doc:view",
     "doc:gen": "madge -f es6 -i deps.svg lib/ ",
     "doc:view": "open deps.svg",
-    "deploy": "DEPLOY_HOSTNAME=galaxy.meteor.com meteor deploy checkmatey.meteorapp.com --settings config/settings_production.json"
+    "deploy": "DEPLOY_HOSTNAME=galaxy.meteor.com meteor deploy checkmatey.meteorapp.com --settings config/settings_production.json",
+    "lint": "eslint ."
   },
   "dependencies": {
     "babel-runtime": "6.18.0",
