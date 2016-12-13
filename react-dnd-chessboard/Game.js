@@ -1,22 +1,12 @@
 var knightPosition = [1, 7]
-var observer = null
-
-function emitChange() {
-  observer(knightPosition)
-}
 
 exports.observe = function(o) {
-  if (observer) {
-    throw new Error('Multiple observers not implemented.')
-  }
-
-  observer = o
-  emitChange()
+    throw new Error('TODO fire actions upon events')
 }
 
 exports.moveKnight = function (toX, toY) {
   knightPosition = [toX, toY]
-  emitChange()
+  console.log('TODO raise event of moving, and generalize to knight', [toX, toY])
 }
 
 exports.canMoveKnight = function (toX, toY) {
