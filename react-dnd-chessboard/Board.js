@@ -5,7 +5,8 @@ var PropTypes = React.PropTypes
 var BoardSquare = require('./BoardSquare')
 var Knight = require('./Knight')
 var moveKnight = require('./Game').moveKnight
-var canMoveKnight = require('./Game').canMoveKnight
+
+/* LEFTOFF Board props needs: a drop handler */
 
 var Board = React.createClass({
   propTypes: {
@@ -40,9 +41,7 @@ var Board = React.createClass({
   },
 
   handleSquareClick: function (toX, toY) {
-    if (canMoveKnight(toX, toY)) {
-      moveKnight(toX, toY)
-    }
+    moveKnight(toX, toY)
   },
 
   render: function () {
